@@ -1,0 +1,142 @@
+.repoItemDetailsContainer {
+  min-height: 90vh;
+  width: 100%;
+  background-color: #0f172a;
+  display: flex;
+  justify-content: center;
+}
+
+.insideItemDetailsContainer {
+  min-height: 80vh;
+  width: 90%;
+  background: #ffffff0f;
+  padding: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .insideItemDetailsContainer {
+    margin-top: 15px;
+  }
+}
+
+.check {
+  font-family: HK Grotesk;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3b82f6;
+}
+
+@media screen and (min-width: 768px) {
+  .check {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+  }
+}
+
+.issueCount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  width: 161px;
+  height: 78px;
+  border-radius: 4px;
+}
+
+.issuesCountHeading {
+  font-family: HK Grotesk;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #ffffff;
+  padding-top: 10px;
+}
+
+.issuesValue {
+  font-family: HK Grotesk;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: white;
+  padding-bottom: 10px;
+}
+
+.contributorsHeading {
+  font-family: HK Grotesk;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ffffff;
+}
+
+.countOfTheNumbers {
+  font-family: HK Grotesk;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #cbd5e1;
+}
+
+.profileContainers {
+  display: flex;
+}
+.profileImage {
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .profileImage {
+    width: 32px;
+    height: 32px;
+    border-radius: 24px;
+  }
+}
+
+.remainingCount {
+  height: 60px;
+  width: 60px;
+  border-radius: 34px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 767px) {
+  .remainingCount {
+    width: 32px;
+    height: 32px;
+    border-radius: 24px;
+  }
+}
+
+.countValue {
+  font-family: HK Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #0f172a;
+}
+
+.languagesHeading {
+  font-family: HK Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+  margin-top: 10px;
+}
