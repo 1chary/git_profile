@@ -1,7 +1,8 @@
 import {Component} from 'react'
 import {RiStarLine} from 'react-icons/ri'
 import {GoRepoForked} from 'react-icons/go'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
+import {v4 as uuid} from 'uuid'
 import ActiveTab from '../../context/ActiveTab'
 import FailureContainer from '../FailureContainer'
 import LoaderComponent from '../LoaderComponent'
@@ -27,11 +28,12 @@ class Repository extends Component {
   renderRepoPage = async () => {
     this.setState({apiStatus: apiConstants.loading})
     const {username} = this.props
-    const repoUrl = `https://apis2.ccbp.in/gpv/repos/1chary?api_key=`
+    const repoUrl = `https://apis2.ccbp.in/gpv/repos/${username}?api_key=`
     try {
       const response = await fetch(repoUrl)
       if (response.ok) {
         const data = await response.json()
+        console.log(data)
         const convertCase = data.map(eachItem => ({
           id: eachItem.id,
           name: eachItem.name,
@@ -39,6 +41,7 @@ class Repository extends Component {
           forksCount: eachItem.forks_count,
           stargazersCount: eachItem.stargazers_count,
           languages: eachItem.languages.map(eachLanguage => ({
+            id: uuid(),
             name: eachLanguage.name,
             value: eachLanguage.value,
           })),
@@ -75,6 +78,7 @@ class Repository extends Component {
                 <ul className="languagesContainer">
                   {eachItem.languages.map(eachLanguage => (
                     <li
+                      key={eachLanguage.id}
                       className={`style ${
                         backgroundColors[
                           Math.ceil(Math.random() * backgroundColors.length)
@@ -105,8 +109,8 @@ class Repository extends Component {
     )
   }
 
-  renderZeroRepos = () => (
-    <div className="noReposContainer">
+  renderZeroReps = () => (
+    <div className="noRepsContainer">
       <img
         src="https://res.cloudinary.com/dowjvitxs/image/upload/v1709723769/Layer_3_1_fjwpct.png"
         alt="no repositories"
@@ -119,7 +123,7 @@ class Repository extends Component {
     const {repoItem} = this.state
     return (
       <div>
-        {repoItem === 0 ? this.renderZeroRepos() : this.renderResponseList()}
+        {repoItem === 0 ? this.renderZeroReps() : this.renderResponseList()}
       </div>
     )
   }
@@ -147,8 +151,6 @@ class Repository extends Component {
   }
 
   goToHome = changeActiveTab => {
-    const {history} = this.props
-    history.replace('/')
     changeActiveTab('Home')
   }
 
@@ -168,13 +170,15 @@ class Repository extends Component {
               GitHub Username is empty, please provide a valid username for
               Repositories
             </p>
-            <button
-              type="button"
-              className="goToHomeButton"
-              onClick={() => this.goToHome(changeActiveTab)}
-            >
-              Go to Home
-            </button>
+            <Link to="/">
+              <button
+                type="button"
+                className="goToHomeButton"
+                onClick={() => this.goToHome(changeActiveTab)}
+              >
+                Go to Home
+              </button>
+            </Link>
           </div>
         )
       }}
@@ -204,4 +208,4 @@ class Repository extends Component {
   }
 }
 
-export default Repository
+export default withRouter(Repository)

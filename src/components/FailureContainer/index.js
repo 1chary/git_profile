@@ -14,7 +14,7 @@ const FailureContainer = props => {
         alt="failure view"
         className="failureCatImage"
       />
-      <h1 className="failureHeading">Something went wrong. Please try again</h1>
+      <p className="failureHeading">Something went wrong. Please try again</p>
       <button type="button" className="retryButton" onClick={tryAgain}>
         Try Again
       </button>

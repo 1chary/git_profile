@@ -3,9 +3,9 @@ import {Route, Switch} from 'react-router-dom'
 import Counter from './components/Counter'
 import ActiveTab from './context/ActiveTab'
 import Home from './components/Home'
-import Repository from './components/Repository'
-import Analysis from './components/Analysis'
-import RepositoryItemDetails from './components/RepositoryItemDetails'
+import AccessUsername from './components/AccessUsername'
+import AccessUserNameForItemDetails from './components/AccessUserNameForItemDetails'
+import AccessAnalysisUsername from './components/AccessAnalysisUsername'
 import NotFound from './components/NotFound'
 import './App.css'
 
@@ -33,12 +33,12 @@ class App extends Component {
       >
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/repositories" component={Repository} />
-          <Route exact path="/analysis" component={Analysis} />
+          <Route exact path="/repositories" component={AccessUsername} />
+          <Route exact path="/analysis" component={AccessAnalysisUsername} />
           <Route
             exact
             path="/repositories/:repoName"
-            component={RepositoryItemDetails}
+            component={AccessUserNameForItemDetails}
           />
           <Route component={NotFound} />
         </Switch>

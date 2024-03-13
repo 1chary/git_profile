@@ -46,6 +46,12 @@
   width: 161px;
   height: 78px;
   border-radius: 4px;
+  margin-right: 20px;
+}
+@media screen and (max-width: 767px) {
+  .issueCount {
+    margin-bottom: 20px;
+  }
 }
 
 .issuesCountHeading {
@@ -139,4 +145,14 @@
   text-align: left;
   color: white;
   margin-top: 10px;
+}
+
+.issueAndCommitContainer {
+  display: flex;
+}
+@media screen and (max-width: 767px) {
+  .issueAndCommitContainer {
+    display: flex;
+    flex-direction: column;
+  }
 }

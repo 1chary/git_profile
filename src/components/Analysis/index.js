@@ -1,5 +1,5 @@
 import {Component, React} from 'react'
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts'
+import {Link} from 'react-router-dom'
 import LoaderComponent from '../LoaderComponent'
 import Header from '../Header'
 import FailureContainer from '../FailureContainer'
@@ -24,12 +24,6 @@ class Analysis extends Component {
     this.renderAnalysisData()
   }
 
-  goToHome = changeActiveTab => {
-    const {history} = this.props
-    history.replace('/')
-    changeActiveTab('Home')
-  }
-
   emptyUsernameAnalysis = () => (
     <ActiveTab.Consumer>
       {value => {
@@ -46,13 +40,15 @@ class Analysis extends Component {
               GitHub Username is empty, please provide a valid username for
               analysis
             </p>
-            <button
-              type="button"
-              className="goToHomeButton"
-              onClick={() => this.goToHome(changeActiveTab)}
-            >
-              Go to Home
-            </button>
+            <Link to="/">
+              <button
+                type="button"
+                className="goToHomeButton"
+                onClick={() => this.goToHome(changeActiveTab)}
+              >
+                Go to Home
+              </button>
+            </Link>
           </div>
         )
       }}
@@ -61,21 +57,28 @@ class Analysis extends Component {
 
   renderAnalysisData = async () => {
     this.setState({apiStatus: apiConstants.loading})
-    const analysisUrl = `https://apis2.ccbp.in/gpv/profile-summary/kentcdodds?api_key=`
-    const response = await fetch(analysisUrl)
-    if (response.ok === true) {
-      const data = await response.json()
-      this.setState({
-        quarterCommitCount: data.quarterCommitCount,
-        apiStatus: apiConstants.success,
-      })
-    } else {
+    const {username} = this.props
+    const analysisUrl = `https://apis2.ccbp.in/gpv/profile-summary/${username}?api_key=`
+    try {
+      const response = await fetch(analysisUrl)
+      if (response.ok === true) {
+        const data = await response.json()
+        this.setState({
+          quarterCommitCount: data.quarterCommitCount,
+          apiStatus: apiConstants.success,
+        })
+      } else {
+        this.setState({apiStatus: apiConstants.failure})
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error)
       this.setState({apiStatus: apiConstants.failure})
     }
   }
 
   renderResponseAnalysis = () => {
     const {quarterCommitCount} = this.state
+    console.log(quarterCommitCount)
     return <h1 className="analysisHeading">Analysis</h1>
   }
 

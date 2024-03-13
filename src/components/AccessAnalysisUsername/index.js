@@ -1,17 +1,17 @@
 import ActiveTab from '../../context/ActiveTab'
-import Repository from '../Repository'
+import Analysis from '../Analysis'
 
-const AccessUsername = () => (
+const AccessAnalysisUsername = () => (
   <ActiveTab.Consumer>
     {value => {
       const {username} = value
       return (
         <>
-          <Repository username={username} />
+          <Analysis username={username} />
         </>
       )
     }}
   </ActiveTab.Consumer>
 )
 
-export default AccessUsername
+export default AccessAnalysisUsername

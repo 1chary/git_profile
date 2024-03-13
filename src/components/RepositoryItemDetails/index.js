@@ -4,6 +4,7 @@ import {RiStarLine} from 'react-icons/ri'
 import {GoRepoForked} from 'react-icons/go'
 import LoaderComponent from '../LoaderComponent'
 import LanguageUsedComponent from '../LanguageUsedComponent'
+import FailureContainer from '../FailureContainer'
 import Header from '../Header'
 
 import './index.css'
@@ -25,27 +26,36 @@ class RepositoryItemDetails extends Component {
 
   renderRepoItemDetails = async () => {
     this.setState({apiStatus: apiConstants.loading})
-    const {match} = this.props
-    const {params} = match
-    const {repoName} = params
-    const itemDetailsUrl = `https://apis2.ccbp.in/gpv/specific-repo/1chary/${repoName}?api_key=`
-    const responseData = await fetch(itemDetailsUrl)
-    if (responseData.ok === true) {
-      const data = await responseData.json()
-      const convertCase = {
-        id: data.id,
-        name: data.name,
-        languages: data.lanuages.map(eachLanguage => ({
-          name: eachLanguage.name,
-          value: eachLanguage.value,
-        })),
-        stargazersCount: data.stargazers_count,
-        forksCount: data.forks_count,
-        commitsCount: data.commits_count,
-        issuesCount: data.open_issues_count,
-        totalNumberOfContributors: data.contributors[0].contributions,
+    const {username, repoName} = this.props
+    const itemDetailsUrl = `https://apis2.ccbp.in/gpv/specific-repo/${username}/${repoName}?api_key=`
+    try {
+      const responseData = await fetch(itemDetailsUrl)
+      if (responseData.ok === true) {
+        const data = await responseData.json()
+        console.log(data)
+        const convertCase = {
+          id: data.id,
+          name: data.name,
+          languages: data.lanuages.map(eachLanguage => ({
+            name: eachLanguage.name,
+            value: eachLanguage.value,
+          })),
+          stargazersCount: data.stargazers_count,
+          forksCount: data.forks_count,
+          commitsCount: data.commits_count,
+          issuesCount: data.open_issues_count,
+          totalNumberOfContributors: data.contributors[0].contributions,
+        }
+        this.setState({
+          apiStatus: apiConstants.success,
+          repoDetails: convertCase,
+        })
+      } else {
+        this.setState({apiStatus: apiConstants.failure})
       }
-      this.setState({apiStatus: apiConstants.success, repoDetails: convertCase})
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      this.setState({apiStatus: apiConstants.failure})
     }
   }
 
@@ -89,10 +99,16 @@ class RepositoryItemDetails extends Component {
             <p className="stargazersCountNumber">{forksCount}</p>
           </div>
         </div>
-        <div className="issueCount">
-          <h1 className="issuesCountHeading">Issues Count</h1>
-          <p className="issuesValue">{issuesCount}</p>
+        <div className="issueAndCommitContainer">
+          <div className="issueCount">
+            <p className="issuesCountHeading">Watchers Counts</p>
+          </div>
+          <div className="issueCount">
+            <p className="issuesCountHeading">Issues Counts</p>
+            <p className="issuesValue">{issuesCount}</p>
+          </div>
         </div>
+
         <h1 className="contributorsHeading">Contributors:</h1>
         <p className="countOfTheNumbers">{totalNumberOfContributors} Members</p>
         <div className="profileContainers">
@@ -133,6 +149,14 @@ class RepositoryItemDetails extends Component {
 
   renderLoader = () => <LoaderComponent />
 
+  onClickRenderAgain = () => {
+    this.renderRepoItemDetails()
+  }
+
+  renderFailure = () => (
+    <FailureContainer onClickTryAgain={this.onClickRenderAgain} />
+  )
+
   allItemDetailsViews = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
@@ -140,6 +164,8 @@ class RepositoryItemDetails extends Component {
         return this.renderSuccessRepoItemDetails()
       case apiConstants.loading:
         return this.renderLoader()
+      case apiConstants.failure:
+        return this.renderFailure()
       default:
         return null
     }
