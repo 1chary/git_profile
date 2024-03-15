@@ -5,6 +5,7 @@ const AccessAnalysisUsername = () => (
   <ActiveTab.Consumer>
     {value => {
       const {username} = value
+
       return (
         <>
           <Analysis username={username} />

@@ -14,7 +14,7 @@ import './index.css'
 const apiConstants = {
   success: 'SUCCESS',
   failure: 'FAILURE',
-  initial: 'INITIAL',
+  loading: 'LOADING',
 }
 const backgroundColors = ['pink', 'green', 'blue', 'maroon', 'yellow']
 
@@ -33,7 +33,7 @@ class Repository extends Component {
       const response = await fetch(repoUrl)
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
+
         const convertCase = data.map(eachItem => ({
           id: eachItem.id,
           name: eachItem.name,

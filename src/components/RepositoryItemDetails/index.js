@@ -12,7 +12,7 @@ import './index.css'
 const apiConstants = {
   success: 'SUCCESS',
   failure: 'FAILURE',
-  initial: 'INITIAL',
+  loading: 'LOADING',
 }
 
 const backgroundColors = ['pink', 'green', 'blue', 'maroon', 'yellow']
@@ -32,7 +32,7 @@ class RepositoryItemDetails extends Component {
       const responseData = await fetch(itemDetailsUrl)
       if (responseData.ok === true) {
         const data = await responseData.json()
-        console.log(data)
+
         const convertCase = {
           id: data.id,
           name: data.name,

@@ -61,3 +61,38 @@
     line-height: 32px;
   }
 }
+
+.analysisContainer {
+  width: 100%;
+  min-height: 90vh;
+}
+
+.lineChartContainer {
+  width: 1140px;
+  height: 363px;
+  border-width: 0px, 0px, 0px, 0px;
+  background: #132240;
+}
+
+@media screen and (max-width: 767px) {
+  .lineChartContainer {
+    width: 312px;
+    height: 253px;
+  }
+}
+
+.pieChartContainer {
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .pieChartContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.repoHeading {
+  width: 285px;
+  height: 48px;
+}
