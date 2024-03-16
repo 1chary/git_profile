@@ -54,7 +54,7 @@ class Header extends Component {
                     Repositories
                   </li>
                 </Link>
-                <Link to="/Analysis" className="navStyle">
+                <Link to="/analysis" className="navStyle">
                   <li
                     className={`individualListItem ${
                       activeTab === 'Analysis' ? 'blueColor' : 'whiteColor'

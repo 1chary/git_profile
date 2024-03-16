@@ -3,26 +3,27 @@ import './index.css'
 
 const COLORS = ['#54CA76', '#31A4E6', '#9261F3', '#F2637F', '#F5C452']
 
-export default function LanguageUsedComponent(props) {
-  const {listOfTheLanguages} = props
+export default function CommitsPerRepoTop10(props) {
+  const {repoCommitCountConvertedData} = props
+
   return (
-    <div className="pieChartContainer">
+    <div className="per10">
       <PieChart width={400} height={400}>
         <Pie
-          data={listOfTheLanguages}
+          data={repoCommitCountConvertedData}
           cx={200}
           cy={200}
           labelLine={false}
-          innerRadius={100}
+          innerRadius={70}
           outerRadius="outer"
           fill="#8884d8"
-          dataKey="value"
+          dataKey="commits"
         >
-          {listOfTheLanguages.map((entry, index) => (
+          {repoCommitCountConvertedData.map((entry, index) => (
             <Cell key="name" fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Legend />
+        <Legend className="legendStyle" />
       </PieChart>
     </div>
   )

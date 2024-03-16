@@ -67,22 +67,9 @@
   min-height: 90vh;
 }
 
-.lineChartContainer {
-  width: 1140px;
-  height: 363px;
-  border-width: 0px, 0px, 0px, 0px;
-  background: #132240;
-}
-
-@media screen and (max-width: 767px) {
-  .lineChartContainer {
-    width: 312px;
-    height: 253px;
-  }
-}
-
 .pieChartContainer {
   display: flex;
+  width: 100%;
 }
 
 @media screen and (max-width: 767px) {
@@ -91,8 +78,34 @@
     flex-direction: column;
   }
 }
+.languagePerRepo {
+  width: 90%;
+}
+
+@media screen and (max-width: 767px) {
+  .languagePerRepo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .repoHeading {
-  width: 285px;
-  height: 48px;
+  font-family: HK Grotesk;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0em;
+}
+
+@media screen and (max-width: 767px) {
+  .repoHeading {
+    font-family: HK Grotesk;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0em;
+
+    color: white;
+  }
 }

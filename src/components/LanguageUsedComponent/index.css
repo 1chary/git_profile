@@ -4,3 +4,32 @@
     margin-left: 20px;
   }
 }
+
+.pieChartContainer {
+  display: flex;
+  align-items: center;
+}
+
+.outer {
+  height: 370px;
+  width: 370px;
+}
+
+@media screen and (max-width: 767px) {
+  .outer {
+    height: 155px;
+    width: 155px;
+  }
+}
+
+.inner {
+  height: 300px;
+  width: 300px;
+}
+
+@media screen and (max-width: 767px) {
+  .inner {
+    height: 105px;
+    width: 105px;
+  }
+}
