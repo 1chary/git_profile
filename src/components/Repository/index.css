@@ -95,7 +95,7 @@
   border-radius: 20px;
   min-height: 20vh;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .languagesContainer {
@@ -196,8 +196,29 @@
   line-height: 48px;
   letter-spacing: 0em;
   text-align: left;
+  color: white;
 }
 
 .linkElement {
   text-decoration: none;
+}
+
+.noRepsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.noDataImage {
+  width: 551px;
+  height: 409px;
+}
+
+@media screen and (max-width: 767px) {
+  .noDataImage {
+    width: 296px;
+    height: 220px;
+  }
 }

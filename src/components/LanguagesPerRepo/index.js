@@ -23,7 +23,7 @@ export default function LanguagesPerRepo(props) {
           <Cell key="name" fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
-      <Legend />
+      <Legend align="right" layout="vertical" verticalAlign="middle" />
     </PieChart>
   )
 }

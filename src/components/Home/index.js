@@ -66,6 +66,7 @@ class Home extends Component {
       const response = await fetch(apiUrl)
       if (response.ok === true) {
         const data = await response.json()
+
         const formattedData = this.updateCase(data)
         this.setState({
           array: formattedData,
@@ -74,7 +75,10 @@ class Home extends Component {
           toDisplayProfilePage: true,
         })
       } else {
-        this.setState({apiStatus: apiConstants.failure})
+        this.setState({
+          apiStatus: apiConstants.failure,
+          toDisplayProfilePage: true,
+        })
       }
     } else {
       return this.setState({
@@ -95,31 +99,32 @@ class Home extends Component {
       publicRepos,
       company,
       location,
+      login,
       url,
     } = array
     return (
       <div className="userDetailsContainer" data-testid="home">
         <img src={avatarUrl} alt={name} className="avatarImage" />
-        <h1 className="userName">{name}</h1>
+        <p className="userName">{login}</p>
         <p className="bioPara">{bio}</p>
         <div className="followersAndReposContainer">
           <div className="followersContainer">
-            <h1 className="followers">{followers}</h1>
+            <p className="followers">{followers}</p>
             <p className="followersPara">FOLLOWERS</p>
           </div>
           <div className="followersContainer">
-            <h1 className="followers">{following}</h1>
+            <p className="followers">{following}</p>
             <p className="followersPara">FOLLOWING</p>
           </div>
           <div className="followersContainer">
-            <h1 className="followers">{publicRepos}</h1>
+            <p className="followers">{publicRepos}</p>
             <p className="followersPara">PUBLIC REPOS</p>
           </div>
         </div>
         <div className="companyAndLocationContainer">
           <div className="companyAndLocation">
             <div className="companyContainer">
-              <p className="followers">COMPANY</p>
+              <p className="followers">Company</p>
               <div className="iconContainer">
                 <RiBuildingLine size={35} color="white" />
                 <p className="companyName">{company}</p>

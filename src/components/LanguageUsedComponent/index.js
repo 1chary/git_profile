@@ -7,7 +7,7 @@ export default function LanguageUsedComponent(props) {
   const {listOfTheLanguages} = props
   return (
     <div className="pieChartContainer">
-      <PieChart width={400} height={400}>
+      <PieChart width={600} height={400}>
         <Pie
           data={listOfTheLanguages}
           cx={200}
@@ -22,7 +22,7 @@ export default function LanguageUsedComponent(props) {
             <Cell key="name" fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Legend />
+        <Legend align="right" layout="vertical" verticalAlign="middle" />
       </PieChart>
     </div>
   )

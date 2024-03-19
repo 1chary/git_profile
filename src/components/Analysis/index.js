@@ -80,8 +80,8 @@ class Analysis extends Component {
       const response = await fetch(analysisUrl)
       if (response.ok === true) {
         const data = await response.json()
-        console.log(data)
         this.setState({
+          analysisData: data,
           quarterCommitCount: data.quarterCommitCount,
           languagePerRepo: data.langRepoCount,
           languageCommitCount: data.langCommitCount,
@@ -172,13 +172,9 @@ class Analysis extends Component {
 
   renderSuccessAnalysis = () => {
     const {analysisData} = this.state
-    return (
-      <div>
-        {analysisData === 0
-          ? this.renderZeroAnalysis()
-          : this.renderResponseAnalysis()}
-      </div>
-    )
+    return analysisData.length === 0
+      ? this.renderZeroAnalysis()
+      : this.renderResponseAnalysis()
   }
 
   renderFailureAnalysis = () => (

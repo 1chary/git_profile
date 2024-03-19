@@ -33,11 +33,11 @@ class Repository extends Component {
       const response = await fetch(repoUrl)
       if (response.ok) {
         const data = await response.json()
-
+        console.log(data)
         const convertCase = data.map(eachItem => ({
           id: eachItem.id,
           name: eachItem.name,
-          avatarUrl: eachItem.avatar_url,
+          avatarUrl: eachItem.owner.avatar_url,
           forksCount: eachItem.forks_count,
           stargazersCount: eachItem.stargazers_count,
           languages: eachItem.languages.map(eachLanguage => ({
@@ -45,6 +45,7 @@ class Repository extends Component {
             name: eachLanguage.name,
             value: eachLanguage.value,
           })),
+          login: eachItem.owner.login,
         }))
         this.setState({
           repoItem: convertCase,
@@ -65,6 +66,7 @@ class Repository extends Component {
     return (
       <>
         <h1 className="repoHeading">Repositories</h1>
+
         <ul className="cardHolder">
           {repoItem.map(eachItem => (
             <Link to={`/repositories/${eachItem.name}`} className="linkElement">
@@ -114,6 +116,7 @@ class Repository extends Component {
       <img
         src="https://res.cloudinary.com/dowjvitxs/image/upload/v1709723769/Layer_3_1_fjwpct.png"
         alt="no repositories"
+        className="noDataImage"
       />
       <h1 className="noRepoHeading">No Repositories Found</h1>
     </div>
@@ -121,11 +124,9 @@ class Repository extends Component {
 
   renderSuccess = () => {
     const {repoItem} = this.state
-    return (
-      <div>
-        {repoItem === 0 ? this.renderZeroReps() : this.renderResponseList()}
-      </div>
-    )
+    return repoItem.length === 0
+      ? this.renderZeroReps()
+      : this.renderResponseList()
   }
 
   onClickTryAgain = () => this.renderRepoPage()

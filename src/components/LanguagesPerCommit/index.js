@@ -21,7 +21,7 @@ export default function LanguagesPerCommit(props) {
           <Cell key="name" fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
-      <Legend />
+      <Legend align="right" layout="vertical" verticalAlign="middle" />
     </PieChart>
   )
 }
