@@ -7,7 +7,7 @@ export default function CommitsPerRepoTop10(props) {
   const {repoCommitCountConvertedData} = props
 
   return (
-    <PieChart className="commitsPer10">
+    <PieChart className="commitsPer10" width={600} height={400}>
       <Pie
         data={repoCommitCountConvertedData}
         cx={200}
