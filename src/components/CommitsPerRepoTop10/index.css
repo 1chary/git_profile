@@ -4,8 +4,8 @@
 }
 
 .commitsPer10 {
-  width: 224px;
-  height: 224px;
+  width:  155px;
+  height: 155px;
   border: 1px solid yellow;
 }
 @media screen and (min-width: 768px) {
