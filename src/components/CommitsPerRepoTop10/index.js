@@ -25,6 +25,6 @@ export default function CommitsPerRepoTop10(props) {
           </Pie>
           <Legend align="right" layout="vertical" verticalAlign="middle" />
         </PieChart>
-    </ResponsiveContainer
+    </ResponsiveContainer>
   )
 }
